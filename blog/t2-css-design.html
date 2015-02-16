@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+  <title>Your page title here</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+
+<main>
+  <div>
+    <iframe src="Header.html" width="100%"></iframe>
+  </div>
+  
+  <div id="LSidebar">
+    <iframe src="LeftSidebar.html" height="400px"></iframe>
+  </div>
+
+  <div id="MainBlock">
+    <h1>HTML and CSS and positioning</h1>
+    <h3>Oh my!</h3>
+    <p>This week we focused on learning HTML and CSS and we learned enough to design our own webpages!  It was a blast to get into the code and start problem solving.  I’m really impressed with how simple HTML makes it to put together your own site.  CSS is a bit more complex, but it seems like arranging GUI in any language is difficult.  Since the most difficult part of what we learned this week was around the positioning and displaying of items I’m going to describe those features in this week’s post.</p>
+
+    <p>Let’s start with the spacing around each item: margin, border, and padding.  The image below really says it all and is what it all come together in my head.</p>
+
+    <img src=“../pics/CSSbox.png”/>
+
+    <p>Starting from the inside, the space between the actual element and the border is called the padding.  Moving outside, next is the border.  This is the only potentially visible item of these three.  Last is the margin.  The margin starts where the border ends and holds our item away from other items.</p>
+
+    <p>The most important property for getting each item exactly where you want it is the position.  The big three values for this attribute are relative, absolute, and fixed.  However, we also can’t leave static out of this conversation; if a div element has no position attribute set it defaults to static.  Setting the position to relative means that we move the element relative to where it would have been if it’s position was static.  The tricky thing here is what would static do?  I haven’t been able to find a good solid way of identifying where static would place something so the relative value hasn’t been very useful. </p>
+
+    <p>When we set an element to use absolute positioning it moves in relation to the parent element (as long as the parent element doesn’t have a position of static).  The value that makes the most sense and has proved to be the easiest to use is the fixed position.  This value ties the element’s location to the browser window (something that makes sense to anyone that’s every browsed the internet).</p>
+
+    <p>In addition to the position item you also need to ensure that your display element is considered.  Display is nearly the same thing as Microsoft Word’s “wrap text” setting.  The first setting is the one that doesn’t play well with others and is also one of the most common: block.  This value doesn’t allow other items on the same line of it (exactly what “top and bottom” does in word).  If you want to have other elements on the same line, but not on top of each other, you should select inline-block.  This value is synonymous with Word’s square or tight settings (essentially box has a padding/margin value and tight has padding=margin=border=0).  The inline setting doesn’t really match with a Word setting, but allows other items to be on the same line, but will not hold others away from it like inline-block.</p>
+
+    <img src=“../pics/wrap-text-in-word.gif” />
+
+    <p>I’m sure I’m going to get better at this positioning stuff as I play with it more and that’s why I really like the idea of DBC pushing us to create our own sites.  Since this site is a reflection of what I’m learning I’m going to try and make it better and better as I grow my skills.</p>
+
+    <p>The last HTML/CSS issue I wanted to touch on is the difference between ID and class.  At first glance they appear to do the same thing: both are properties that are set in the creation tag and both refer to a CSS file to give styling and positioning data.  However, with ID you can only have one item that refers to that particular ID whereas you can have any number of items refer to a class.  The other significant difference is that IDs can help with navigation.  I can use URL#ID to automatically scroll down to the element with that’s ID.  Pretty snazzy.</p>
+
+    <p>I learned a lot this week and want to give a shout out to Codecademy for putting together such awesome materials.  See you again next week! </p>
+  </div>
+
+  <div id="RSidebar">
+    <iframe src="RightSidebar.html" height="400px"></iframe>
+  </div>
+    
+  </div>
+
+</main>
