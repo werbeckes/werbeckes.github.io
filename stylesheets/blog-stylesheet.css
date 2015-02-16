@@ -1,0 +1,49 @@
+/*#Header {
+	position: fixed;
+	left:0;top:0;
+	width:100%;
+	display:block;
+}*/
+#Main-header { 
+	display:block;
+	text-align:center;
+	font-size:4em;
+	padding: 8px
+
+} 
+iframe {
+	border:0px;
+}
+
+#Subheader { 
+	display:block;
+	text-align:center;
+	font-size: 1.5em;
+	border-top:2px solid black; border-bottom: 2px solid black;
+	padding:8px;
+	margin-bottom: 20px
+}
+#LSidebar { 
+	display:inline-block;
+	float:left;
+	width: 20%;
+	clear:left;
+}
+#RSidebar {
+	display: inline-block;
+	float:right;
+	width: 12%;
+}
+#MainBlock {
+	display: inline-block;
+	text-align: center;
+	width:60%;
+}
+a img {
+	width:40px;
+	height:40px
+}
+
+li a {
+	text-decoration: none
+}
