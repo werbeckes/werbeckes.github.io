@@ -8,8 +8,16 @@
 	display:block;
 	text-align:center;
 	font-size:4em;
-	padding: 8px
-
+	padding: 8px;
+	background-color: #1f1f2e;
+	color: white;
+	font-family: Futura, sans-serif;
+	z-index: 1;
+/*	position:absolute;
+	width:100%;
+	left:0;
+	top: 0;
+*/	
 } 
 iframe {
 	border:0px;
@@ -19,31 +27,53 @@ iframe {
 	display:block;
 	text-align:center;
 	font-size: 1.5em;
-	border-top:2px solid black; border-bottom: 2px solid black;
-	padding:8px;
-	margin-bottom: 20px
+	border-top:1px solid white;
+	padding:6px;
+	margin-bottom: 20px;
+	background-color: #1f1f2e;
+	color: white;
+	font-family: Futura, sans-serif;
+/*	position:fixed;
+	width:100%;
+*/
 }
 #LSidebar { 
 	display:inline-block;
 	float:left;
 	width: 20%;
 	clear:left;
+	font-family: Arial, sans-serif;
+
 }
 #RSidebar {
 	display: inline-block;
 	float:right;
 	width: 12%;
+	font-family: Arial, sans-serif;
+
 }
 #MainBlock {
 	display: inline-block;
-	text-align: center;
+	text-align: left;
 	width:60%;
+	font-family: Arial, sans-serif;
 }
+h1 {
+	text-align: center;
+}
+h3 {
+	text-align: center;
+}
+h4 {
+	font-family: Arial, sans-serif
+}
+
 a img {
 	width:40px;
 	height:40px
 }
 
 li a {
-	text-decoration: none
+	text-decoration: none;
+	font-family: Arial, sans-serif;
 }
