@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-  <title>Your page title here</title>
+  <title>Nerdin' Out - Arrays and Hashes</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
 </head>
@@ -15,29 +15,60 @@
   </div>
 
   <div id="MainBlock">
-    <h1>HTML and CSS and Positioning</h1>
-    <h3>Oh my!</h3>
-    <p>This week we focused on learning HTML and CSS and we learned enough to design our own webpages!  It was a blast to get into the code and start problem solving.  I’m really impressed with how simple HTML makes it to put together your own site.  CSS is a bit more complex, but it seems like arranging GUI in any language is difficult.  Since the most difficult part of what we learned this week was around the positioning and displaying of items I’m going to describe those features in this week’s post.</p>
+    <h1>Containers for Everything You Need</h1>
+    <h3>Let me hold that for you</h3>
+    <p>In nearly all real world problems we will be encountering data that is more than a single value.  Now is the time to learn how Ruby stores multiple pieces of related information into one vessel.  The two most common forms of storage are arrays and hashes.  These container type objects share a lot in common, but are useful for different problems.  We’ll start by talking about how to create and use both arrays and hashes and conclude by talking about the different uses for each of them.</p>
 
-    <p>Let’s start with the spacing around each item: margin, border, and padding.  The image below really says it all and is what it all come together in my head.</p>
+    <h2>Creation</h2>
+    <ul>
+      <li>create blank array: <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">new_array <span style="color: #333333">=</span> <span style="color: #333333">[]</span></pre></div>
+      </li>
+      <li>create array with data:
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">new_array <span style="color: #333333">=</span> <span style="color: #333333">[ 23,”favorite number”, [1,1,2,3,5,8] ]</span></pre></div>
+      </li>
+      <li>create blank hash:<!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">new_hash <span style="color: #333333">=</span> {} </pre></div>
+      </li>
+      <li>create hash with data:<!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">new_hash <span style="color: #333333">=</span> { <span style="background-color: #fff0f0">&quot;favorite number&quot;</span> <span style="color: #333333">=&gt;</span> <span style="color: #0000DD; font-weight: bold">23</span>, 
+          <span style="background-color: #fff0f0">&quot;address&quot;</span> <span style="color: #333333">=&gt;</span> <span style="color: #0000DD; font-weight: bold">7118</span>, 
+          <span style="background-color: #fff0f0">&quot;pets&quot;</span> <span style="color: #333333">=&gt;</span> <span style="color: #333333">[</span><span style="background-color: #fff0f0">&quot;Harper&quot;</span>,<span style="background-color: #fff0f0">&quot;Lambeau&quot;</span><span style="color: #333333">]</span> } </pre></div>
+      </li>
+    </ul>
 
-    <img src="../pics/CSSbox.png">
+    <p>Note that any type of object can be stored in an array or a hash (I can put an array in one slot of my array or even as a value of my hash).  Keep in mind that there are many other ways of doing the same thing, but for the sake of convenience and simplicity we won’t get into those.</p>
 
-    <p>Starting from the inside, the space between the actual element and the border is called the padding.  Moving outside, next is the border.  This is the only potentially visible item of these three.  Last is the margin.  The margin starts where the border ends and holds our item away from other items.</p>
+    <h2>Adding Elements</h2>
+    <ul>
+      <li>Add an element to an array: <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">my_array <span style="color: #333333">&lt;&lt;</span> <span style="background-color: #fff0f0">&quot;new value&quot;</span></pre></div>
+      </li>
+      <li>Add an element to a hash: <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">my_hash<span style="color: #333333">[</span><span style="background-color: #fff0f0">&quot;new key&quot;</span><span style="color: #333333">]=</span><span style="background-color: #fff0f0">&quot;new value&quot;</span></pre></div>
+      </li>
+    </ul>
 
-    <p>The most important property for getting each item exactly where you want it is the position.  The big three values for this attribute are relative, absolute, and fixed.  However, we also can’t leave static out of this conversation; if a div element has no position attribute set it defaults to static.  Setting the position to relative means that we move the element relative to where it would have been if it’s position was static.  The tricky thing here is what would static do?  I haven’t been able to find a good solid way of identifying where static would place something so the relative value hasn’t been very useful. </p>
+    <p>These examples are adding a new value to the end of our collection objects.</p>
 
-    <p>When we set an element to use absolute positioning it moves in relation to the parent element (as long as the parent element doesn’t have a position of static).  The value that makes the most sense and has proved to be the easiest to use is the fixed position.  This value ties the element’s location to the browser window (something that makes sense to anyone that’s every browsed the internet).</p>
+    <h2>Retrieving Elements</h2>
+    <ul>
+      <li>Retrieve element from an array: <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> my_array<span style="color: #333333">[</span><span style="color: #0000DD; font-weight: bold">3</span><span style="color: #333333">]</span></pre></div>
+      </li>
+      <li>Retrieve element from a hash: <!-- HTML generated using hilite.me -->
+        <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">a <span style="color: #333333">=</span> my_hash<span style="color: #333333">[</span><span style="background-color: #fff0f0">&quot;key&quot;</span><span style="color: #333333">]</span></pre></div>
+      </li>
+    </ul>
 
-    <p>In addition to the position item you also need to ensure that your display element is considered.  Display is nearly the same thing as Microsoft Word’s “wrap text” setting.  The first setting is the one that doesn’t play well with others and is also one of the most common: block.  This value doesn’t allow other items on the same line of it (exactly what “top and bottom” does in word).  If you want to have other elements on the same line, but not on top of each other, you should select inline-block.  This value is synonymous with Word’s square or tight settings (essentially box has a padding/margin value and tight has padding=margin=border=0).  The inline setting doesn’t really match with a Word setting, but allows other items to be on the same line, but will not hold others away from it like inline-block.</p>
+    <p> Note how the syntax for both of these commands is nearly identical.  If we were using a hash and for our key we were using integers and counting by 1 the objects would be nearly identical.</p>
 
-    <img src="../pics/wrap-text-in-word.gif" />
+    <p>Of course there are many, many other things you can do with collection objects, but these are the most common actions and do a good job of showing how they are both very similar, but different.  In addition, they can both take advantage of the <a href="http://ruby-doc.org/core-2.0.0/Enumerable.html">enumerable module methods</a>.  Both containers can store any type of object (this includes hashes being able to take any object even for a key). </p>
 
-    <p>I’m sure I’m going to get better at this positioning stuff as I play with it more and that’s why I really like the idea of DBC pushing us to create our own sites.  Since this site is a reflection of what I’m learning I’m going to try and make it better and better as I grow my skills.</p>
+    <p>However, there are differences.  For one, the order of elements in an array is usually an important aspect. For hashes, the key is meant to be the way of finding elements, not necessarily the order (it is possible, however, to find and use the order that the key/value pairs were entered to take action on hash elements).  In Python, there is a very same type of structure that exists, but it is called a dictionary. I think that name is better as it more intuitive to understand the value of that type of container.  Hashes are more useful for pairing of data elements name and address, states and abbreviations, city name and population.  This container is useful for getting the second piece of related information if I have the first and don’t care what order it was entered.  Arrays on the other hand are great for storing lots of data that isn’t necessarily connected with another piece of information.  They are spectacular at storing 2-, 3-, and even more dimensions of data.  Although hashes have their place, arrays are used much, much more frequently.</p>
 
-    <p>The last HTML/CSS issue I wanted to touch on is the difference between ID and class.  At first glance they appear to do the same thing: both are properties that are set in the creation tag and both refer to a CSS file to give styling and positioning data.  However, with ID you can only have one item that refers to that particular ID whereas you can have any number of items refer to a class.  The other significant difference is that IDs can help with navigation.  I can use URL#ID to automatically scroll down to the element with that’s ID.  Pretty snazzy.</p>
+    <h5>February 22, 2015</h5>
 
-    <p>I learned a lot this week and want to give a shout out to Codecademy for putting together such awesome materials.  See you again next week! </p>
   </div>
 
   <div id="RSidebar">
