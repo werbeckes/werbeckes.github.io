@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+  <title>Nerdin' Out - Map Method</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+
+<main>
+  <div>
+    <iframe src="Header.html" width="100%"></iframe>
+  </div>
+  
+  <div id="LSidebar">
+    <iframe src="LeftSidebar.html" height="400px"></iframe>
+  </div>
+
+  <div id="MainBlock">
+    <h1>Enumerate This!</h1>
+    <h3>Why #map is my new best friend</h3>
+    <p>This week we our challenges led us to spend a lot of time looking through Ruby Documentation.  Both through official documentation and Googling to find questions other newbs asked on forum sites.  In fact, I think I spent more time online reading than actually in front Sublime or the Terminal.  I also found out how awesome “The Well-Grounded Rubyist” is.  Great book.  So much knowledge is in that book that I want to be in my head.  This is the rare textbook that makes you want to read more than what is required.  Anyway, in celebration of all the methods I learned about this week I wanted to talk about one of the most powerful I learned about: #Map.</p>
+
+    <p>Map is a method that lives in the Enumerable Module.  The methods included in the enumerable module can be used for objects that are arrays, ranges, or hashes.  (This is as opposed to methods that live in either the array, range, or hash classes and can only be called from their respective objects.)</p>
+
+    <p>At first glance #map is very much like the #each method.  It loops through every item in the enumerator  (i.e. every element in an array or every key/value pair in an enumerator) and performs the block of code that you provide.  The difference is that #map will return an array whereas #each returns the original array:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">result <span style="color: #666666">=</span> array<span style="color: #666666">.</span>each { <span style="color: #666666">|</span>x<span style="color: #666666">|</span> <span style="color: #666666">&lt;</span>code block<span style="color: #666666">&gt;</span> }
+    result <span style="color: #666666">==</span> array   <span style="color: #60a0b0; font-style: italic">#&gt; true</span></pre></div>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">result <span style="color: #666666">=</span> array<span style="color: #666666">.</span>map{ <span style="color: #666666">|</span>x<span style="color: #666666">|</span> <span style="color: #666666">&lt;</span>code block<span style="color: #666666">&gt;</span> }
+    result <span style="color: #666666">==</span> array   <span style="color: #60a0b0; font-style: italic">#&gt; false</span></pre></div>
+
+    <p>There is also a destructive form of #map available only for the Array class (which makes sense: #map always returns an array, a destructive method for hashes would reduce the hash to an array and that doesn’t make sense).</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">array0 <span style="color: #666666">=</span> array
+    array<span style="color: #666666">.</span>map!{ <span style="color: #666666">|</span>x<span style="color: #666666">|</span> <span style="color: #666666">&lt;</span>code block<span style="color: #666666">&gt;</span> }
+    array0 <span style="color: #666666">==</span> array  <span style="color: #60a0b0; font-style: italic">#&gt; false</span></pre></div>
+
+    <p>The beautiful thing about #map is the flexibility and openness of being able to put in your own code block to do almost anything you need to.  To start simply we can add one to each element in the array.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #666666">[</span><span style="color: #40a070">100</span>,<span style="color: #40a070">200</span>,<span style="color: #40a070">300</span><span style="color: #666666">].</span>map{ <span style="color: #666666">|</span>n<span style="color: #666666">|</span> n<span style="color: #666666">+</span><span style="color: #40a070">1</span> }
+    <span style="color: #60a0b0; font-style: italic">#&gt; [101,201,301]</span></pre></div>
+
+    <p>Or we can append “ in bed” to every item.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #666666">[</span><span style="color: #4070a0">&#39;apple&#39;</span>,<span style="color: #4070a0">&#39;car&#39;</span>,<span style="color: #4070a0">&#39;pony&#39;</span><span style="color: #666666">].</span>map{ <span style="color: #666666">|</span>str<span style="color: #666666">|</span> str, <span style="color: #4070a0">&#39; in bed.&#39;</span> }
+    <span style="color: #60a0b0; font-style: italic">#&gt; [&#39;apple in bed&#39;,&#39;car in bed&#39;,&#39;pony in bed.&#39;]</span></pre></div>
+
+
+    <p>But the magic is only starting.  We can run another method on each item by using the very simple line.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">array<span style="color: #666666">.</span>map!{ <span style="color: #666666">|</span>word<span style="color: #666666">|</span> word<span style="color: #666666">.</span>upcase }</pre></div>
+
+    <p>Or to get even more complex we can have map selectively pick elements and perform certain actions by imbedding an if statement in our code block.  In the example below, we first check if a number is even.  If it is, then we add one to the value and put it in our new array.  Otherwise (/else), we put the current value in our new array.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">result <span style="color: #666666">=</span> <span style="color: #666666">[</span><span style="color: #40a070">1</span>,<span style="color: #40a070">2</span>,<span style="color: #40a070">3</span>,<span style="color: #40a070">4</span>,<span style="color: #40a070">5</span><span style="color: #666666">].</span>map{ <span style="color: #666666">|</span>n<span style="color: #666666">|</span> n <span style="color: #666666">%</span> <span style="color: #40a070">0</span> <span style="color: #666666">==</span> <span style="color: #40a070">0</span> <span style="color: #666666">?</span> n<span style="color: #666666">+</span><span style="color: #40a070">1</span> : n }
+    <span style="color: #60a0b0; font-style: italic">#&gt; [1,3,3,5,5]</span></pre></div>
+
+    <p>As you can see the possibilities are endless and this is one method that I think will make my life much easier in the future if I continue to learn more about how to implement it effectively.</p>
+    <h5>March 1, 2015</h5>
+  </div>
+
+  <div id="RSidebar">
+    <iframe src="RightSidebar.html" height="400px"></iframe>
+  </div>
+    
+  </div>
+
+</main>
+
