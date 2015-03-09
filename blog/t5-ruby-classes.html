@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+  <title>Nerdin' Out - A Class Above the Rest</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+
+<main>
+  <div>
+    <iframe src="Header.html" width="100%"></iframe>
+  </div>
+  
+  <div id="LSidebar">
+    <iframe src="LeftSidebar.html" height="400px"></iframe>
+  </div>
+
+  <div id="MainBlock">
+    <h1>A Class Above the Rest</h1>
+    <h3>An introduction to Ruby classes, instance variables, and inheritance</h3>
+    <p>The best help in understanding the purpose and importance of object orientated programming is the use of real world examples.  It is a big step to go from thinking of a line of code like <code>sum = 2 + 5</code> or <code>if b > c then …</code> to understanding the creation of an object as an instance of a class that has inherited properties from the classes in the hierarchy above.  The example we are going to use today to wrap our heads around Ruby Classes is dogs.</p>
+
+    <p>Every dog we see walking outside is unique, but we still instantly recognize it as a dog (except for those tiny lap dogs that might as well be cats or guinea pigs).  Although every dog is different, we recognize that they are also all somewhat similar in their “dogness.”  In object orientated programming, we define a class to encompass the attributes that all dogs have.  If we create a new dog object we first have to identify the basics like it’s breed and how old it is.  We then have access to teach that dog a new trick or give it a grooming.  In the world of Ruby code, each of these attributes of dogness is handled slightly differently so we will break down each one.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #60add5">Harper</span> <span style="color: #666666">=</span> <span style="color: #60add5">Dog</span><span style="color: #666666">.</span>new(<span style="color: #4070a0">&quot;Goldendoodle&quot;</span>)</pre></div>
+
+
+    <p>The first is initializing the new dog object.  When we create a new dog we need to identify the dog’s breed.  The dog’s breed can’t be changed at any time.  That’s just the way our puppy was born and we can’t change it later if we want to.  Any type of variable that is stored at the dog level is called an instance variable.  This means that the data for that variable is stored within our dog object.  In the case of breed, the data for that variable shouldn’t be able to be changed, but should be available to be read later if desired.  So we can get the dog breed by:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020">p</span> <span style="color: #60add5">Harper</span><span style="color: #666666">.</span>breed
+    <span style="color: #666666">=&gt;</span> <span style="color: #4070a0">&quot;Goldendoodle&quot;</span></pre></div>
+
+    <p>But we CAN NOT set the dog breed by:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #60add5">Harper</span><span style="color: #666666">.</span>breed <span style="color: #666666">=</span> <span style="color: #4070a0">&quot;German Shepard&quot;</span></pre></div>
+
+    <p>We can also have instance variables that can be read or set.  For example, Harper’s coat color is white, but if I take her to the groomer I can ask for them to turn her into a zebra for Halloween:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020">p</span> <span style="color: #60add5">Harper</span><span style="color: #666666">.</span>coat
+    <span style="color: #666666">=&gt;</span> <span style="color: #4070a0">&quot;white&quot;</span>
+        
+    <span style="color: #60add5">Harper</span><span style="color: #666666">.</span>coat <span style="color: #666666">=</span> <span style="color: #4070a0">&quot;black and white stripes&quot;</span>
+    <span style="color: #007020">p</span> <span style="color: #60add5">Harper</span><span style="color: #666666">.</span>coat
+    <span style="color: #666666">=&gt;</span> <span style="color: #4070a0">&quot;black and white stripes&quot;</span></pre></div>
+
+    <p>How these variables are set up within our Ruby Class is different to account for their different levels of access.  For variables that should only be read, but not edited directly by the user we use the code:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020">attr_reader</span> <span style="color: #517918">:breed</span></pre></div>
+
+    <p>For the attributes that are readable and writable we instead use:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020">attr_accessor</span> <span style="color: #517918">:coat</span></pre></div>
+
+    <p>There is also a way to make an instance variable only writable, but not readable.  However, I can’t think of anything like that in relation to our dog example.  Here’s the line of code that you would use if you had a good reason for that type of data:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020">attr_writer</span> <span style="color: #517918">:example_variable</span></pre></div>
+
+    <p>Dogs are definitely the best pets, but they aren’t the only kind of pets.  In fact, they have a lot in common with other pets.  If we were building out all of the different classes for each type of pet we would have to use a lot of redundant code.  However, Ruby has a way to help with this (of course).  The best way to set this up is to first build out a class for Pet.  In this class we build out the variables or methods that are useful for any type of pet.  Then when we define our Dog class we would tell it to inherit all of the methods and variables from the pet class.  In this way we only need to define the things in the dog class that are unique to dogs.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">Pet</span>
+      att_reader: breed
+      
+      <span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">train</span>(<span style="color: #007020">new</span> trick)
+        commands <span style="color: #666666">&lt;&lt;</span> new_trick
+      <span style="color: #007020; font-weight: bold">end</span>
+    <span style="color: #007020; font-weight: bold">end</span>
+
+    <span style="color: #007020; font-weight: bold">def</span> <span style="color: #06287e">Dog</span> <span style="color: #666666">&lt;</span> <span style="color: #60add5">Pet</span>
+      <span style="color: #007020">attr_accessor</span> <span style="color: #517918">:coat</span>
+    <span style="color: #007020; font-weight: bold">end</span>
+
+    <span style="color: #60add5">Harper</span> <span style="color: #666666">=</span> <span style="color: #60add5">Dog</span><span style="color: #666666">.</span>new
+    <span style="color: #60add5">Harper</span><span style="color: #666666">.</span>train(<span style="color: #4070a0">&quot;sit&quot;</span>)</pre></div>
+
+    <h5>March 8, 2015</h5>
+  </div>
+
+  <div id="RSidebar">
+    <iframe src="RightSidebar.html" height="400px"></iframe>
+  </div>
+    
+  </div>
+
+</main>
+
