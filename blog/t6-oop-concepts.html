@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+  <title>Nerdin' Out - Blocks, Procs, and Lambdas</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+
+<main>
+  <div>
+    <iframe src="Header.html" width="100%"></iframe>
+  </div>
+  
+  <div id="LSidebar">
+    <iframe src="LeftSidebar.html" height="400px"></iframe>
+  </div>
+
+  <div id="MainBlock">
+    <h1>Blocks, Procs, and Lambdas</h1>
+    <h3>A lot better than lions, tigers, and bears</h3>
+    <p>This is the first time I’ve gotten the opportunity to teach you about a concept that I didn’t know existed before Dev Bootcamp.  That’s not to say I haven’t learned anything at DBC, I’ve learned more about Ruby than I have about any other coding language I’ve ever worked on.  However, the concepts of methods, objects, classes, variables, constants, globals, arrays, hashes, etc. were all something I’ve worked with before when learning Python, Java, Basic, C++, or Cache.  I picked this topic because I had literally no idea what it was about and I am excited to explore the world of everything in the coding world that I don’t yet know.</p>
+
+    <p>I’ve been using <strong>blocks</strong> of code for awhile now without knowing what they were called.  Below is an example of a block:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">array<span style="color: #666666">.</span>map! { <span style="color: #666666">|</span>x<span style="color: #666666">|</span> x<span style="color: #666666">+</span><span style="color: #40a070">10</span> } </pre></div>
+
+
+    <p>Everything inside of the curly brackets is a block of code.  You can also use the <code>do … end</code> combination to identify the start and end of the block.  They work exactly the same as the curly brackets.  In this relatively simple example a block works perfectly fine, but in some cases you will want to put significantly more code to pass into a method or even create methods that take multiple blocks of code!  To do all of these fancy things we can use Procs or Lambdas.</p>
+
+    <p>Below is an example of a <strong>Proc</strong>.</p>  
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007020">p</span> <span style="color: #666666">=</span> <span style="color: #60add5">Proc</span><span style="color: #666666">.</span>new{ <span style="color: #666666">|</span>x<span style="color: #666666">|</span> x<span style="color: #666666">+</span><span style="color: #40a070">10</span> }</pre></div>
+
+    <p>Essentially, what we are doing is taking the block of code and storing it in a special kind of object called a Proc.  Proc is short for Procedure.  Ok, now that we have a Proc, what do we do with it?  Well, we can use it anywhere we would normally use a block such as:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">array<span style="color: #666666">.</span>map! { <span style="color: #007020">p</span> }</pre></div>
+
+    <p>Doesn’t that look simple?!  Amazing, right?  Taking it a step further, we can create a <strong>Lambda</strong> using the syntax:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">lam <span style="color: #666666">=</span> <span style="color: #007020">lambda</span>{ <span style="color: #666666">|</span>x<span style="color: #666666">|</span> x <span style="color: #666666">+</span> <span style="color: #40a070">10</span> }</pre></div>
+
+    <p>As you can see, the syntax is even simpler than using a Proc.  Although, we don’t explicitly create a new object with the <code>Object.new</code> command we’re used to, we are creating a new object.  We are actually creating a Proc object!  We can then use the <code>lam</code> anywhere we could use a block or a Proc.</p>
+
+    <h5>March 15, 2015</h5>
+  </div>
+
+  <div id="RSidebar">
+    <iframe src="RightSidebar.html" height="400px"></iframe>
+  </div>
+    
+  </div>
+
+</main>
+
