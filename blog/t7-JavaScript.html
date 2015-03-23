@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<head>
+  <title>Nerdin' Out - Looping</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+
+<main>
+  <div>
+    <iframe src="Header.html" width="100%"></iframe>
+  </div>
+  
+  <div id="LSidebar">
+    <iframe src="LeftSidebar.html" height="400px"></iframe>
+  </div>
+
+  <div id="MainBlock">
+    <h1>Loop de loop</h1>
+    <h3>de loop</h3>
+    <p>I love looping.  I love the concept and I really love the flexibility of Ruby looping.  I was actually a little disappointed when i learned about all of the amazing enumerable methods because it meant writing less loops (but of course I came to love Enumerable very quickly).  However, the power and variety of Ruby looping meant that I still frequently have to take a quick look back to get the syntax right for different kinds of loops.  After learning and using JavaScript loops as well I’ve decided to condense all of the different syntaxes into one blog post for my own sake (as well as yours, my lovely, devoted reader).</p>
+
+    <h3>While Loop, Initial Check</h3>
+    <p>The while loops for both languages look very similar.  The most significant differences are in how to print to the screen after each loop and JS’s need for a semi-colon at the end of each statement.  The other difference you see is that JS uses curly brackets to contain the block to be run each loop while the Ruby example is using the <code>do … end</code> to contain the block. However, Ruby allows the use of curly brackets as well.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #517918">Ruby</span>:
+    count <span style="color: #666666">=</span><span style="color: #40a070">0</span>
+    <span style="color: #007020; font-weight: bold">while</span> count <span style="color: #666666">&lt;=</span> <span style="color: #40a070">5</span> <span style="color: #007020; font-weight: bold">do</span>
+      <span style="color: #007020">p</span> <span style="color: #4070a0">&quot;loop number: </span><span style="color: #70a0d0; font-style: italic">#{</span>count<span style="color: #70a0d0; font-style: italic">}</span><span style="color: #4070a0">&quot;</span>
+      count<span style="color: #666666">+=</span><span style="color: #40a070">1</span>
+    <span style="color: #007020; font-weight: bold">end</span></pre></div>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">JavaScript<span style="color: #666666">:</span>
+    count <span style="color: #666666">=</span> <span style="color: #40a070">0</span>;
+    <span style="color: #007020; font-weight: bold">while</span> (count <span style="color: #666666">&lt;=</span> <span style="color: #40a070">5</span>) {
+      console.log(<span style="color: #4070a0">&quot;loop number:&quot;</span>,count);  
+      count<span style="color: #666666">++</span>;
+    }</pre></div>
+
+    <h3>While Loop, Post Check</h3>
+    <p>Using the check at the end of the loop guarantees that the loop will run at least once.  This syntax is very useful for when you want the condition to check user input. Both languages end with a while clause and a condition, but the structure of the block to loop is different.  In Ruby the loop is enclosed by <code>begin … end</code>, whereas in JS there is simply a <code>do</code> and curly brackets.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #517918">Ruby</span>:
+    <span style="color: #007020; font-weight: bold">begin</span>
+      <span style="color: #007020">p</span> <span style="color: #4070a0">&quot;Give me a number 1-10&quot;</span>
+      input <span style="color: #666666">=</span> <span style="color: #007020">gets</span><span style="color: #666666">.</span>chomp<span style="color: #666666">.</span>to_i
+    <span style="color: #007020; font-weight: bold">end</span> <span style="color: #007020; font-weight: bold">while</span> (input <span style="color: #666666">&gt;=</span> <span style="color: #40a070">1</span> <span style="color: #666666">&amp;&amp;</span> input <span style="color: #666666">&lt;=</span><span style="color: #40a070">10</span>)</pre></div>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">JavaScript<span style="color: #666666">:</span>
+    <span style="color: #007020; font-weight: bold">do</span> {
+      <span style="color: #007020; font-weight: bold">var</span> input <span style="color: #666666">=</span> <span style="color: #007020">Number</span>(prompt(<span style="color: #4070a0">&quot;Give me a number 1-10&quot;</span>));
+    } <span style="color: #007020; font-weight: bold">while</span> (input <span style="color: #666666">&gt;=</span> <span style="color: #40a070">1</span> <span style="color: #666666">&amp;&amp;</span> input <span style="color: #666666">&lt;=</span> <span style="color: #40a070">10</span>)</pre></div>
+
+    <h3>Infinite Loop, with Break</h3>
+    <p>Although it’s rarely a good idea to write an infinite loop I put together an example of how one would be written mostly for the sake of not accidentally doing this in the future.  In addition, I added how to break the loop from within rather than with a conditional statement.  Note that in the Ruby example I also made use of the <code>until</code> command.  This is essentially the same as <code>while !</code>, but in certain situations can make your code more reader friendly.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #517918">Ruby</span>:
+    count <span style="color: #666666">=</span> <span style="color: #40a070">0</span>
+    <span style="color: #007020; font-weight: bold">until</span> <span style="color: #007020">false</span>
+      <span style="color: #007020">p</span> <span style="color: #4070a0">&quot;the loop will never end!&quot;</span>
+      <span style="color: #007020; font-weight: bold">if</span> count<span style="color: #666666">==</span><span style="color: #40a070">1000</span>
+        <span style="color: #007020; font-weight: bold">break</span>
+      <span style="color: #007020; font-weight: bold">end</span>
+      count<span style="color: #666666">+=</span><span style="color: #40a070">1</span>
+    <span style="color: #007020; font-weight: bold">end</span></pre></div>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">JavaScript<span style="color: #666666">:</span>
+    <span style="color: #007020; font-weight: bold">var</span> count <span style="color: #666666">=</span> <span style="color: #40a070">0</span>
+    <span style="color: #007020; font-weight: bold">while</span> (<span style="color: #007020; font-weight: bold">true</span>) {
+      console.log(<span style="color: #4070a0">&quot;the loop will never end!&quot;</span>);
+      count<span style="color: #666666">++</span>;
+      <span style="color: #007020; font-weight: bold">if</span> (count <span style="color: #666666">==</span> <span style="color: #40a070">1000</span>) <span style="color: #007020; font-weight: bold">break</span>;
+    }</pre></div>
+
+    <h3>For Loop</h3>
+    <p>And finally, my favorite kind of loop!  For loops are used to run a block of code a specific number of times.  They are also frequently an option for when you want to loop through an array and perform an action once for each item (however, the enumerable class probably has both an #each and a #map method that are probably better suited for your needs in Ruby).  In Ruby, you can very easily say that you want something to happen any number of times with the <code>.times</code> command.  With JS your for statement needs to specify three things: setting a variable, the condition to terminate the loop, and the increment after each loop.</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #517918">Ruby</span>:
+    <span style="color: #40a070">5</span><span style="color: #666666">.</span>times { <span style="color: #666666">|</span>i<span style="color: #666666">|</span> <span style="color: #007020">puts</span> <span style="color: #4070a0">&quot;loop number: </span><span style="color: #70a0d0; font-style: italic">#{</span>i<span style="color: #70a0d0; font-style: italic">}</span><span style="color: #4070a0">&quot;</span> }</pre></div>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">JavaScript<span style="color: #666666">:</span>
+    <span style="color: #007020; font-weight: bold">for</span> (<span style="color: #007020; font-weight: bold">var</span> count<span style="color: #666666">=</span><span style="color: #40a070">0</span>; count <span style="color: #666666">&lt;</span> <span style="color: #40a070">5</span>; count <span style="color: #666666">++</span>) {
+      console.log(<span style="color: #4070a0">&quot;loop number:&quot;</span>,count)
+    }</pre></div>
+
+    <p>Ruby also has a special kind of for statement when looping through each element of an array:</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f0f0f0; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #517918">Ruby</span>:
+    <span style="color: #007020; font-weight: bold">for</span> item <span style="color: #007020; font-weight: bold">in</span> array
+      <span style="color: #007020">puts</span> item
+    <span style="color: #007020; font-weight: bold">end</span></pre></div>
+
+    <h5>March 22, 2015</h5>
+  </div>
+
+  <div id="RSidebar">
+    <iframe src="RightSidebar.html" height="400px"></iframe>
+  </div>
+    
+  </div>
+
+</main>
+
