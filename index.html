@@ -32,21 +32,13 @@ var svg = d3.select("body")
 var states = svg.append( "g" )
 	.attr("class", "states");
 
-//var geoPath = d3.geo.path().projection( albersProjection );
-
-//g.selectAll( "path" )
-//  .data( us_json )
-//  .enter()
-//  .append( "path" )
-//  .attr( "fill", "#ccc" )
-//  .attr( "d", geoPath );
-
 d3.json("./slpStatsMap/us.json", function (collection) {
    states.selectAll("path")
      .data(collection.features)
      .enter().append("path")
      .attr("class","state")
      .attr("d", path);
+		 .attr("d", function(d) { console.log("What info is in this thing?", d); });
 });
 </script>
 </body>
