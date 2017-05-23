@@ -39,15 +39,15 @@ d3.json("http://werbeckes.github.io/slpStatsMap/us.json", function (collection) 
 		 .attr("id", function(d) { return d.properties.name })
      .attr("d", path)
 
-console.log('times');
-
 d3.csv("http://werbeckes.github.io/slpStatsMap/stateData.csv", function(data) {
 	for (var i = 0; i < data.length; i++) {
 
 		var stateName = "#" + data[i].name;
+		var red = parseInt(data[i].responses);
+		console.log('red:', data[i]);
 
 		var state = d3.select(stateName)
-			.attr("fill","red");
+			.attr("fill", "rgb("+red+",0,0)");
 
 	}
 });
