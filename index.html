@@ -40,6 +40,13 @@ d3.json("./slpStatsMap/us.json", function (collection) {
 		 .attr("id", function(d) { return d.properties.name })
      .attr("d", path)
 });
+
+d3.csv("./slpStatsMap/stateData.csv", function(data) {
+	var stateName = data.name;
+
+	d3.select("#" + stateName);
+	.attr("fill", "red")
+});
 </script>
 </body>
 </html>
