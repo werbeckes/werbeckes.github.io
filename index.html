@@ -44,8 +44,8 @@ d3.json("./slpStatsMap/us.json", function (collection) {
 d3.csv("./slpStatsMap/stateData.csv", function(data) {
 	var stateName = data.name;
 
-	d3.select("#" + stateName);
-	.attr("fill", "red")
+	d3.select("#" + stateName)
+		.attr("fill", "red")
 });
 </script>
 </body>
