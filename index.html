@@ -37,8 +37,8 @@ d3.json("./slpStatsMap/us.json", function (collection) {
      .data(collection.features)
      .enter().append("path")
      .attr("class","state")
-     .attr("d", path);
-		 .attr("d", function(d) { console.log("What info is in this thing?", d); });
+     .attr("d", path)
+		 .attr("d", function(d) { console.log("What info is in this thing?", d) });
 });
 </script>
 </body>
