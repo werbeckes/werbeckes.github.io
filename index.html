@@ -4,7 +4,6 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
 	  <style>
       .state{
-        fill: none;
         stroke: #a9a9a9;
         stroke-width: 1;
       }
@@ -46,6 +45,7 @@ d3.csv("./slpStatsMap/stateData.csv", function(data) {
 
 	d3.select("#" + stateName)
 		.attr("fill", "red")
+		.attr("opacity", function(d) {console.log("state: ", stateName); })
 });
 </script>
 </body>
