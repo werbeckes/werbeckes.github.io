@@ -10,6 +10,17 @@
       .state:hover{
         fill-opacity:0.5;
       }
+			div.tooltip {
+	    	position: absolute;
+  	  	text-align: center;
+    		width: auto;
+    		height: auto;
+  	  	padding: 2px;
+	    	font: 12px sans-serif;
+				background: white;
+				border: 1px solid black;
+				pointer-events: none;
+			}
     </style>
   </head>
 <body>
@@ -31,6 +42,11 @@ var svg = d3.select("body")
 var states = svg.append( "g" )
 	.attr("class", "states");
 
+var div = d3.select("body")
+		    .append("div")
+    		.attr("class", "tooltip")
+    		.style("opacity", 0);
+
 d3.json("http://werbeckes.github.io/slpStatsMap/us.json", function (collection) {
    states.selectAll("path")
      .data(collection.features)
@@ -42,13 +58,18 @@ d3.json("http://werbeckes.github.io/slpStatsMap/us.json", function (collection) 
 d3.csv("http://werbeckes.github.io/slpStatsMap/stateData.csv", function(data) {
 	for (var i = 0; i < data.length; i++) {
 
-		var stateName = "#" + data[i].name;
-		var red = parseInt(data[i].responses);
-		console.log('red:', data[i]);
+		var stateName = data[i].name;
+		var color = 255 - parseInt(data[i].responses);
+		var tooltipText = stateName +" n="+ data[i].responses;
 
-		var state = d3.select(stateName)
-			.attr("fill", "rgb("+red+",0,0)");
-
+		var state = d3.select("#"+stateName)
+			.attr("fill", "rgb(255,"+color+","+color+")")
+			.on("mouseover", function(d) {
+				div.transition().duration(200).style("opacity",0.9);
+				div.text(d.properties.tooltipText).style("left", (d3.event.pageX)+"px")
+					.style("top", (d3.event.pageY)+"px");
+			});
+		state.data()[0].properties.tooltipText = tooltipText;
 	}
 });
 });
