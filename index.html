@@ -59,17 +59,24 @@ d3.csv("http://werbeckes.github.io/slpStatsMap/stateData.csv", function(data) {
 	for (var i = 0; i < data.length; i++) {
 
 		var stateName = data[i].name;
+		var caseload = +data[i].caseload;
+		var salary = +data[i].salary;
+		var happiness = +data[i].happiness;
 		var color = 255 - parseInt(data[i].responses);
-		var tooltipText = stateName +" n="+ data[i].responses;
+		var tooltipHtml = "<h4>"+stateName+"</h4>"
+			+ "<p>caseload: "+caseload+"</p>"
+			+ "<p>salary: "+salary+"</p>"
+			+ "<p>happiness: "+happiness+"</p>";
 
 		var state = d3.select("#"+stateName)
 			.attr("fill", "rgb(255,"+color+","+color+")")
 			.on("mouseover", function(d) {
 				div.transition().duration(200).style("opacity",0.9);
-				div.text(d.properties.tooltipText).style("left", (d3.event.pageX)+"px")
+				div.html(d.properties.tooltipHtml)
+				.style("left", (d3.event.pageX)+"px")
 					.style("top", (d3.event.pageY)+"px");
 			});
-		state.data()[0].properties.tooltipText = tooltipText;
+		state.data()[0].properties.tooltipHtml = tooltipHtml;
 	}
 });
 });
