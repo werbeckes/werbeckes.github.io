@@ -4,7 +4,7 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <style>
       .state{
-        stroke: #a9a9a9;
+        stroke: #000000;
         stroke-width: 1;
       }
       .state:hover{
@@ -21,9 +21,35 @@
         border: 1px solid black;
         pointer-events: none;
       }
+      div#chart {
+        float: right;
+        width: 400px;
+      }
+      div#map {
+        float: left
+      }
     </style>
   </head>
 <body>
+  <div id="select">
+    <select>
+      <option value="happiness">Happiness</option>
+      <option value="salary">Salary</option>
+      <option value="caseload">Caseload</option>
+    </select>
+   </div>
+   <div id="map">
+   </div>
+   <div id="chart">
+     <h2>Best and Worst</h2>
+     <table id="best">
+       <tr>
+         <th>State</th>
+         <th>Value</th>
+       </tr>
+     </table>
+   </div>
+
 <script type="text/javascript">
 var width = 960;
 var height = 500;
@@ -34,7 +60,7 @@ var projection = d3.geo.albersUsa()
 
 var path = d3.geo.path().projection(projection);
 
-var svg = d3.select("body")
+var svg = d3.select("#map")
   .append("svg")
   .attr("width", width)
   .attr("height", height);
@@ -55,35 +81,83 @@ d3.json("http://werbeckes.github.io/slpStatsMap/us.json", function (collection) 
      .attr("id", function(d) { return d.properties.name })
      .attr("d", path)
 
-var blue = rgb(101,201,197);
-var orange = rgb(247,135,133);
-var yellow = rgb(251,211,99);
+//var blue = rgb(101,201,197);
+//var orange = rgb(247,135,133);
+//var yellow = rgb(251,211,99);
 
 d3.csv("http://werbeckes.github.io/slpStatsMap/stateData.csv", function(data) {
-  for (var i = 0; i < data.length; i++) {
 
-    var stateName = data[i].name;
-    var caseload = +data[i].caseload;
-    var salary = +data[i].salary;
-    var happiness = +data[i].happiness;
-    var color = 255 - parseInt(data[i].responses);
-    var tooltipHtml = "<h4>"+stateName+"</h4>"
+  var selectedProperty = [];
+  var color = [];
+  var stateName='', tooltipHtml='', rgbColor='';
+  var caseload=0, salary=0, happiness=0, responses=0;
+
+  for (var i = 0; i < data.length; i++) {
+    this.addToSelectedProperty(data[i], selectedProperty);
+
+    stateName = data[i].name;
+    caseload = +data[i].caseload;
+    salary = +data[i].salary;
+    happiness = +data[i].happiness;
+    responses = +data[i].responses;
+
+    tooltipHtml = "<h4>"+stateName+"</h4>"
       + "<p>caseload: "+caseload+"</p>"
       + "<p>salary: "+salary+"</p>"
-      + "<p>happiness: "+happiness+"</p>";
+      + "<p>happiness: "+happiness+"</p>"
+      + "<p>(n="+responses+")</p>";
+
+    color = [];
+    color[0] = this.assignColor(happiness, 3, 4.3, 189);
+    color[1] = this.assignColor(happiness, 3, 4.3, 66);
+    color[2] = this.assignColor(happiness, 3, 4.3, 70);
+
+    //color[0] = Math.round(255 - ((happiness - 3) * (189/(5-3))));
+    //color[1] = Math.round(255 - ((happiness - 3) * (66/(5-3))));
+    //color[2] = Math.round(255 - ((happiness - 3) * (70/(5-3))));
+    rgbColor = "rgb(" +color[0]+ "," +color[1]+ "," +color[2]+ ")";
 
     var state = d3.select("#"+stateName)
-      .attr("fill", "rgb(255,"+color+","+color+")")
+      .attr("fill", rgbColor)
       .on("mouseover", function(d) {
         div.transition().duration(200).style("opacity",0.9);
         div.html(d.properties.tooltipHtml)
         .style("left", (d3.event.pageX)+"px")
-          .style("top", (d3.event.pageY)+"px");
+        .style("top", (d3.event.pageY)+"px");
       });
     state.data()[0].properties.tooltipHtml = tooltipHtml;
   }
+
+  selectedProperty.sort( function(a,b) { return a.value - b.value });
+  worst = selectedProperty.slice(0,10);
+  best = selectedProperty.slice(-10).reverse();
+
+  var bestTable = d3.select('#best');
+  var bestBody = bestTable.append('bestBody');
+  var rows = bestBody.selectAll('tr')
+      .data(best)
+      .enter()
+      .append('tr');
+
+  var stateCell = '';
+  var valueCell = '';
+  rows[0].forEach( function (row) {
+    stateCell = "<td>" + row.__data__.state + "</td>";
+    valueCell = "<td>" + row.__data__.value + "</td>";
+
+    row.innerHTML = stateCell + valueCell;
+  });
+
 });
 });
+
+function assignColor(value, minValue, maxValue, color) {
+  return Math.round(255 - ((value - minValue) * ((color)/(maxValue-minValue))));
+}
+
+function addToSelectedProperty(row, array, property = "happiness") {
+  array.push({state: row.name, value: row[property]});
+}
 </script>
 </body>
 </html>
