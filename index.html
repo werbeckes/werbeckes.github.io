@@ -23,10 +23,16 @@
       }
       div#chart {
         float: right;
-        width: 400px;
+        width: 450px;
       }
       div#map {
-        float: left
+        float: left;
+      }
+      #best {
+        float: left;
+      }
+      #worst {
+        float: right;
       }
     </style>
   </head>
@@ -42,7 +48,15 @@
    </div>
    <div id="chart">
      <h2>Best and Worst</h2>
+
      <table id="best">
+       <tr>
+         <th>State</th>
+         <th>Value</th>
+       </tr>
+     </table>
+
+     <table id="worst">
        <tr>
          <th>State</th>
          <th>Value</th>
@@ -132,10 +146,24 @@ d3.csv("http://werbeckes.github.io/slpStatsMap/stateData.csv", function(data) {
   worst = selectedProperty.slice(0,10);
   best = selectedProperty.slice(-10).reverse();
 
-  var bestTable = d3.select('#best');
-  var bestBody = bestTable.append('bestBody');
-  var rows = bestBody.selectAll('tr')
-      .data(best)
+  var bestTableBody = d3.select('#best').append('bestBody');
+  var worstTableBody = d3.select('#worst').append('worstBody');
+  this.fillTableBody(bestTableBody, best);
+  this.fillTableBody(worstTableBody, worst);
+});
+});
+
+function assignColor (value, minValue, maxValue, color) {
+  return Math.round(255 - ((value - minValue) * ((color)/(maxValue-minValue))));
+}
+
+function addToSelectedProperty (row, array, property = "happiness") {
+  array.push({state: row.name, value: row[property]});
+}
+
+function fillTableBody (tableBody, dataArray) {
+  var rows = tableBody.selectAll('tr')
+      .data(dataArray)
       .enter()
       .append('tr');
 
@@ -148,15 +176,6 @@ d3.csv("http://werbeckes.github.io/slpStatsMap/stateData.csv", function(data) {
     row.innerHTML = stateCell + valueCell;
   });
 
-});
-});
-
-function assignColor(value, minValue, maxValue, color) {
-  return Math.round(255 - ((value - minValue) * ((color)/(maxValue-minValue))));
-}
-
-function addToSelectedProperty(row, array, property = "happiness") {
-  array.push({state: row.name, value: row[property]});
 }
 </script>
 </body>
